@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.dhruvathaide.tiltlock"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.dhruvathaide.tiltlock"
-        minSdk = 25
-        targetSdk = 35
+        minSdk = 26
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
