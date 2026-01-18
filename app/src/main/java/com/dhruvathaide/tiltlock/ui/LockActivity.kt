@@ -113,7 +113,7 @@ class LockActivity : AppCompatActivity() {
         iris.backgroundTintList = ColorStateList.valueOf(neonCyan)
         
         iris.animate().alpha(0f).scaleX(3f).scaleY(3f).setDuration(500).withEndAction {
-            startActivity(Intent(this, SecureNotesActivity::class.java))
+            startActivity(Intent(this, SecureFolderActivity::class.java))
             finish()
         }.start()
     }
