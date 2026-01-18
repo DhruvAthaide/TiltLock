@@ -23,9 +23,12 @@ class TiltSensorManager(context: Context) : SensorEventListener {
     private val _rawGyro = MutableLiveData<Pair<Float, Float>>()
     val rawGyro: LiveData<Pair<Float, Float>> = _rawGyro
 
-    private var lastTiltTime = 0L
-    private val DEBOUNCE_MS = 450L
-    private val THRESHOLD = 1.5f
+    private val DEBOUNCE_MS = 350L
+    private val TILT_THRESHOLD = 2.0f
+    private val RESET_THRESHOLD = 1.0f
+
+    private var isNeutral = true
+    private var lastDirection: TiltDirection? = null
 
     fun start() {
         gyroscope?.let {
@@ -44,33 +47,31 @@ class TiltSensorManager(context: Context) : SensorEventListener {
         val x = event.values[0]
         val y = event.values[1]
 
-        // Emit raw data for parallax
+        // Emit raw data for parallax (Always emit)
         _rawGyro.postValue(Pair(x, y))
 
-        val now = System.currentTimeMillis()
-        if (now - lastTiltTime < DEBOUNCE_MS) return
+        // State Machine for Tilt Detection
+        if (isNeutral) {
+            var direction: TiltDirection? = null
+            
+            // Check for strong tilt
+            if (y < -TILT_THRESHOLD) direction = TiltDirection.LEFT
+            else if (y > TILT_THRESHOLD) direction = TiltDirection.RIGHT
+            else if (x < -TILT_THRESHOLD) direction = TiltDirection.UP
+            else if (x > TILT_THRESHOLD) direction = TiltDirection.DOWN
 
-        var direction: TiltDirection? = null
-
-        if (y > THRESHOLD) direction = TiltDirection.LEFT   // Negative Y is usually Left depending on orientation, but let's stick to spec. 
-                                                            // Wait, Spec says: LEFT -> Negative Y, RIGHT -> Positive Y.
-                                                            // Let me double check standard Android coord system.
-                                                            // Standard: +Y is rotation around -X axis (top edge goes down). 
-                                                            // Actually, let's stick to the prompt's request:
-                                                            // LEFT -> Negative Y
-                                                            // RIGHT -> Positive Y
-                                                            // UP -> Negative X
-                                                            // DOWN -> Positive X
-        
-        // My code below follows the mapping requested:
-        if (y < -THRESHOLD) direction = TiltDirection.LEFT
-        else if (y > THRESHOLD) direction = TiltDirection.RIGHT
-        else if (x < -THRESHOLD) direction = TiltDirection.UP
-        else if (x > THRESHOLD) direction = TiltDirection.DOWN
-
-        direction?.let {
-            _tiltEvent.postValue(it)
-            lastTiltTime = now
+            if (direction != null) {
+                _tiltEvent.postValue(direction)
+                isNeutral = false // ENTER TILTED STATE
+                lastDirection = direction
+            }
+        } else {
+            // In TILTED state. Wait for return to neutral (near zero).
+            // We use a separate RESET_THRESHOLD.
+            // Check if BOTH axes are within safe zone
+            if (kotlin.math.abs(x) < RESET_THRESHOLD && kotlin.math.abs(y) < RESET_THRESHOLD) {
+                isNeutral = true // RETURN TO NEUTRAL
+            }
         }
     }
 
