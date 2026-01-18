@@ -2,18 +2,53 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:backgroundTint="@color/dark_surface">
+    android:layout_margin="6dp"
+    android:backgroundTint="#151515"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/fileName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textColor="@color/neon_cyan"
-        android:text="File.enc"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:fontFamily="monospace"/>
+        android:orientation="vertical"
+        android:padding="12dp">
+        
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_lock_outline"
+            android:tint="@color/neon_cyan"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/fileName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#E0E0E0"
+            android:text="FILE_DATA"
+            android:maxLines="1"
+            android:ellipsize="middle"
+            android:fontFamily="monospace"
+            android:textSize="12sp"
+            android:gravity="center"/>
+            
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ENCRYPTED"
+            android:textColor="#40FFFFFF"
+            android:textSize="8sp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#1000F2FF"
+        android:layout_gravity="bottom"/>
 
 </androidx.cardview.widget.CardView>

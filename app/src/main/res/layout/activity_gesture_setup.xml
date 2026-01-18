@@ -4,24 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/charcoal"
+    android:background="@drawable/background_cyber"
     tools:context=".ui.GestureSetupActivity">
 
-    <!-- Hex Grid Background (Simulated with simple pattern or just solid dark) -->
-    <!-- Ideally a custom view, but we'll stick to clean minimalist for now -->
-    
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="monospace"
-        android:text="CALIBRATE SECURITY"
+        android:text="@string/title_calibration"
         android:textColor="@color/neon_cyan"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:letterSpacing="0.2"
-        android:shadowColor="@color/neon_cyan"
-        android:shadowRadius="10"
+        android:background="#1000F2FF"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,13 +27,13 @@
         android:id="@+id/instructions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="40dp"
-        android:gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="32dp"
         android:fontFamily="monospace"
-        android:text="1. PRESS RECORD\n2. PERFORM TILTS\n3. SAVE SEQUENCE"
-        android:textColor="#90FFFFFF"
-        android:lineSpacingExtra="8dp"
+        android:text="@string/instruction_setup"
+        android:textColor="#80FFFFFF"
+        android:textSize="12sp"
+        android:lineSpacingExtra="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
@@ -45,74 +42,92 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/visualizerCard"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="32dp"
-        android:backgroundTint="#0A0A0A"
-        app:cardCornerRadius="12dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginVertical="32dp"
+        android:backgroundTint="#050505"
+        app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
-        app:strokeColor="@color/neon_cyan"
+        app:strokeColor="#20FFFFFF"
         app:strokeWidth="1dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRecord"
         app:layout_constraintTop_toBottomOf="@+id/instructions">
 
-        <TextView
-             android:id="@+id/gestureSequence"
+        <androidx.constraintlayout.widget.ConstraintLayout
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:gravity="center"
-             android:padding="20dp"
-             android:fontFamily="monospace"
-             android:text="[ WAITING FOR INPUT ]"
-             android:textColor="@color/neon_cyan"
-             android:textSize="20sp"
-             android:lines="4"
-             android:ellipsize="end"
-             android:textAlignment="center"/>
+             android:layout_height="match_parent">
+             
+             <!-- Corner accents -->
+             <View
+                android:layout_width="16dp"
+                android:layout_height="1dp"
+                android:background="@color/neon_cyan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+             <View
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:background="@color/neon_cyan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+             <TextView
+                 android:id="@+id/gestureSequence"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="center"
+                 android:padding="20dp"
+                 android:fontFamily="monospace"
+                 android:text="@string/msg_waiting"
+                 android:textColor="@color/neon_cyan"
+                 android:textSize="14sp"
+                 android:letterSpacing="0.1"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRecord"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="INIT_RECORD"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginHorizontal="32dp"
+        android:text="@string/btn_record_start"
         android:textColor="@color/neon_cyan"
+        android:background="@drawable/btn_neon_outline"
+        android:fontFamily="monospace"
         android:letterSpacing="0.1"
-        android:backgroundTint="#2000F2FF"
-        app:strokeColor="@color/neon_cyan"
-        app:strokeWidth="1dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSave"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/neon_cyan"
-        android:text="COMMIT SEQUENCE"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:letterSpacing="0.15"
+        android:background="@drawable/btn_neon_outline"
+        android:text="@string/btn_save_gesture"
+        android:textColor="@color/white"
         android:fontFamily="monospace"
-        android:elevation="8dp"
+        android:letterSpacing="0.1"
         app:layout_constraintBottom_toTopOf="@id/btnClear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <TextView
         android:id="@+id/btnClear"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="RESET_BUFFER"
-        android:textColor="@color/error_red"
+        android:layout_marginBottom="24dp"
+        android:text="@string/btn_clear_input"
+        android:textColor="#80FF0033"
         android:fontFamily="monospace"
+        android:textSize="12sp"
+        android:letterSpacing="0.1"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

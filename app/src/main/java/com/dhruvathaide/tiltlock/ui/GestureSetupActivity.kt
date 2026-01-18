@@ -23,7 +23,7 @@ class GestureSetupActivity : AppCompatActivity() {
     private lateinit var tvSequence: TextView
     private lateinit var btnRecord: Button
     private lateinit var btnSave: Button
-    private lateinit var btnClear: Button
+    private lateinit var btnClear: TextView // Changed to TextView in XML if using TextButton style or just findViewById works
     private lateinit var visualizerCard: CardView
     
     private var isRecording = false
@@ -57,7 +57,7 @@ class GestureSetupActivity : AppCompatActivity() {
                 repository.saveGesture(recordedSequence)
                 // Haptic Success
                 val v = getSystemService(Vibrator::class.java)
-                v?.vibrate(VibrationEffect.createOneShot(200, 255))
+                v?.vibrate(VibrationEffect.createOneShot(300, 255))
                 finish() 
             }
         }
@@ -76,16 +76,16 @@ class GestureSetupActivity : AppCompatActivity() {
     private fun toggleRecording() {
         isRecording = !isRecording
         if (isRecording) {
-            btnRecord.text = "STOP_RECORDING"
+            btnRecord.text = getString(R.string.btn_record_stop)
             btnRecord.setTextColor(ContextCompat.getColor(this, R.color.error_red))
             recordedSequence.clear()
             updateSequenceText()
             sensorManager.start()
             
             // Pulse visualizer
-            visualizerCard.animate().alpha(1f).scaleX(1.05f).scaleY(1.05f).setDuration(200).start()
+            visualizerCard.animate().alpha(1f).scaleX(1.02f).scaleY(1.02f).setDuration(200).start()
         } else {
-            btnRecord.text = "INIT_RECORD"
+            btnRecord.text = getString(R.string.btn_record_start)
             btnRecord.setTextColor(ContextCompat.getColor(this, R.color.neon_cyan))
             sensorManager.stop()
             visualizerCard.animate().scaleX(1f).scaleY(1f).setDuration(200).start()
@@ -104,7 +104,6 @@ class GestureSetupActivity : AppCompatActivity() {
     }
 
     private fun animateTilt(direction: TiltDirection) {
-        // Tilt the card visually to match input
         val rotX = when(direction) {
             TiltDirection.UP -> -10f
             TiltDirection.DOWN -> 10f
@@ -128,7 +127,7 @@ class GestureSetupActivity : AppCompatActivity() {
 
     private fun updateSequenceText() {
         if (recordedSequence.isEmpty()) {
-            tvSequence.text = "[ WAITING FOR INPUT ]"
+            tvSequence.text = getString(R.string.msg_waiting)
             tvSequence.alpha = 0.5f
         } else {
             tvSequence.text = recordedSequence.joinToString(" >> ") { it.name }
@@ -137,8 +136,7 @@ class GestureSetupActivity : AppCompatActivity() {
     }
     
     private fun updateUIState() {
-        // Initial State
-        tvSequence.text = "[ WAITING FOR INPUT ]"
+        tvSequence.text = getString(R.string.msg_waiting)
     }
 
     private fun performHaptic() {

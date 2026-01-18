@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">TiltLock</string>
+    
+    <!-- Lock Screen -->
+    <string name="title_secure_vault">SECURE VAULT</string>
+    <string name="msg_authenticate">AUTHENTICATE ACCESS</string>
+    <string name="status_locked">SYSTEM LOCKED</string>
+    
+    <!-- Gesture Setup -->
+    <string name="title_calibration">SECURITY CALIBRATION</string>
+    <string name="instruction_setup">1. ENGAGE SENSORS\n2. EXECUTE PATTERN\n3. COMMIT PROTOCOL</string>
+    <string name="btn_record_start">ENGAGE SENSORS</string>
+    <string name="btn_record_stop">TERMINATE SCAN</string>
+    <string name="btn_save_gesture">COMMIT PROTOCOL</string>
+    <string name="btn_clear_input">FLUSH BUFFER</string>
+    <string name="msg_waiting">AWAITING INPUT_STREAM...</string>
+    
+    <!-- Secure Folder -->
+    <string name="title_encrypted_storage">ENCRYPTED STORAGE</string>
+    <string name="empty_vault">NO ARTIFACTS FOUND</string>
+    <string name="fab_import">IMPORT DATA</string>
+    
+    <!-- Misc -->
+    <string name="file_unknown">DATA_FRAGMENT</string>
 </resources>
