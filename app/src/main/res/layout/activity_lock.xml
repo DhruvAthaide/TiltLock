@@ -1,0 +1,27 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg_mesh_gradient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/vaultCard"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:background="@drawable/vault_card_bg"
+            android:elevation="20dp">
+
+            <View
+                android:id="@+id/iris"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:background="@drawable/iris_circle" />
+
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>
