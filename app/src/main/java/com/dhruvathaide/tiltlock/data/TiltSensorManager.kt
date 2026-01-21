@@ -16,6 +16,7 @@ class TiltSensorManager(context: Context) : SensorEventListener {
 
     private val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     private val gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
+    private val settings = SettingsRepository(context)
 
     private val _tiltEvent = MutableLiveData<TiltDirection>()
     val tiltEvent: LiveData<TiltDirection> = _tiltEvent
@@ -44,8 +45,9 @@ class TiltSensorManager(context: Context) : SensorEventListener {
         event ?: return
         if (event.sensor.type != Sensor.TYPE_GYROSCOPE) return
 
-        val x = event.values[0]
-        val y = event.values[1]
+        val sensitivity = settings.sensitivity
+        val x = event.values[0] * sensitivity
+        val y = event.values[1] * sensitivity
 
         // Emit raw data for parallax (Always emit)
         _rawGyro.postValue(Pair(x, y))
