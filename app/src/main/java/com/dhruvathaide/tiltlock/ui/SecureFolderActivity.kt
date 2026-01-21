@@ -108,6 +108,10 @@ class SecureFolderActivity : AppCompatActivity() {
                 startActivity(Intent(this, GestureSetupActivity::class.java))
                 true
             }
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
             else -> false
         }
     }
