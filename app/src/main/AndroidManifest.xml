@@ -27,7 +27,10 @@
         </activity>
 
         <activity android:name=".ui.GestureSetupActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.GestureSetupActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.SecureFolderActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.SettingsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.BreakInLogActivity" android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
