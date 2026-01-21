@@ -22,4 +22,14 @@
     
     <!-- Misc -->
     <string name="file_unknown">DATA_FRAGMENT</string>
+    
+    <!-- Settings -->
+    <string name="title_settings">SYSTEM CONFIG</string>
+    <string name="lbl_sensitivity">SENSOR SENSITIVITY</string>
+    <string name="lbl_show_pattern">VISUALIZE PATH</string>
+    <string name="lbl_sound_enabled">AUDIO FEEDBACK</string>
+    <string name="lbl_haptics_enabled">HAPTIC FEEDBACK</string>
+    <string name="lbl_glitch_enabled">VISUAL GLITCH FX</string>
+    <string name="btn_view_logs">ACCESS LOGS</string>
+    <string name="desc_sensitivity">ADJUST GYRO GAIN</string>
 </resources>
