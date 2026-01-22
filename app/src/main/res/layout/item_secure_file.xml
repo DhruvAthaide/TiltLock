@@ -11,34 +11,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="#202020"
         android:padding="12dp">
         
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_lock_outline"
+            android:id="@+id/ivIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_file_doc"
             android:tint="@color/neon_cyan"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="12dp"/>
 
         <TextView
             android:id="@+id/fileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#E0E0E0"
+            android:textColor="#FFFFFF"
             android:text="FILE_DATA"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="middle"
-            android:fontFamily="monospace"
-            android:textSize="12sp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="13sp"
             android:gravity="center"/>
             
         <TextView
+            android:id="@+id/tvMeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ENCRYPTED"
-            android:textColor="#40FFFFFF"
-            android:textSize="8sp"
+            android:textColor="#80FFFFFF"
+            android:textSize="10sp"
             android:fontFamily="monospace"
             android:gravity="center"
             android:layout_marginTop="4dp"/>
