@@ -7,46 +7,69 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="4dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#202020"
-        android:padding="12dp">
+        android:background="#202020">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+            
+            <ImageView
+                android:id="@+id/ivIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_file_doc"
+                android:tint="@color/neon_cyan"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/fileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="FILE_DATA"
+                android:maxLines="2"
+                android:ellipsize="middle"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="13sp"
+                android:gravity="center"/>
+                
+            <TextView
+                android:id="@+id/tvMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ENCRYPTED"
+                android:textColor="#80FFFFFF"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
         
         <ImageView
-            android:id="@+id/ivIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_file_doc"
-            android:tint="@color/neon_cyan"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="12dp"/>
+            android:id="@+id/ivDelete"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_delete"
+            android:padding="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_gravity="top|end"
+            android:layout_margin="4dp"
+            app:tint="#60FFFFFF" />
 
-        <TextView
-            android:id="@+id/fileName"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:text="FILE_DATA"
-            android:maxLines="2"
-            android:ellipsize="middle"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="13sp"
-            android:gravity="center"/>
+            android:layout_height="2dp"
+            android:background="#1000F2FF"
+            android:layout_gravity="bottom"/>
             
-        <TextView
-            android:id="@+id/tvMeta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ENCRYPTED"
-            android:textColor="#80FFFFFF"
-            android:textSize="10sp"
-            android:fontFamily="monospace"
-            android:gravity="center"
-            android:layout_marginTop="4dp"/>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <View
         android:layout_width="match_parent"

@@ -81,9 +81,24 @@ class SecureFolderActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerView)
-        adapter = SecureFileAdapter { file -> openFile(file) }
+        adapter = SecureFileAdapter(
+            onItemClick = { file -> openFile(file) },
+            onDeleteClick = { file -> confirmDelete(file) }
+        )
         updateLayoutManager()
         recyclerView.adapter = adapter
+    }
+    
+    private fun confirmDelete(file: SecureFile) {
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Delete File?")
+            .setMessage("Are you sure you want to delete '${file.name}'? This cannot be undone.")
+            .setPositiveButton("Delete") { _, _ ->
+                viewModel.deleteFile(file)
+                Toast.makeText(this, "File deleted", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
     
     private fun updateLayoutManager() {

@@ -106,6 +106,20 @@ class SecureFileRepository(private val context: Context) {
         return lower.endsWith(".jpg") || lower.endsWith(".png") || lower.endsWith(".jpeg") || lower.endsWith(".webp")
     }
 
+    fun deleteFile(secureFile: SecureFile) {
+        // Delete physical file
+        if (secureFile.file.exists()) {
+            secureFile.file.delete()
+        }
+        
+        // Remove from metadata
+        val metadata = loadMetadata().toMutableMap()
+        if (metadata.containsKey(secureFile.file.name)) {
+            metadata.remove(secureFile.file.name)
+            saveMetadata(metadata)
+        }
+    }
+
     private fun loadMetadata(): Map<String, String> {
         if (!metadataFile.exists()) return emptyMap()
         return try {

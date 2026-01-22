@@ -31,6 +31,13 @@ class SecureFolderViewModel(
         }
     }
     
+    fun deleteFile(file: SecureFile) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteFile(file)
+            loadFiles()
+        }
+    }
+    
     // Suspend function to avoid blocking UI during decryption
     suspend fun decryptFile(file: File): File {
         return repository.decryptToFile(file)

@@ -9,7 +9,8 @@ import com.dhruvathaide.tiltlock.R
 import com.dhruvathaide.tiltlock.data.SecureFile
 
 class SecureFileAdapter(
-    private val onItemClick: (SecureFile) -> Unit
+    private val onItemClick: (SecureFile) -> Unit,
+    private val onDeleteClick: (SecureFile) -> Unit
 ) : RecyclerView.Adapter<SecureFileAdapter.FileViewHolder>() {
 
     private var files: List<SecureFile> = emptyList()
@@ -33,8 +34,9 @@ class SecureFileAdapter(
 
     inner class FileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvName: TextView = itemView.findViewById(R.id.fileName)
-        private val ivIcon: android.widget.ImageView = itemView.findViewById(R.id.ivIcon) // Need to ensure ID matches XML
+        private val ivIcon: android.widget.ImageView = itemView.findViewById(R.id.ivIcon)
         private val tvMeta: TextView = itemView.findViewById(R.id.tvMeta)
+        private val ivDelete: android.widget.ImageView = itemView.findViewById(R.id.ivDelete)
 
         fun bind(file: SecureFile) {
             tvName.text = file.name
@@ -43,12 +45,14 @@ class SecureFileAdapter(
             val iconRes = getIconForFile(file.name)
             ivIcon.setImageResource(iconRes)
             
-            // Optional: Show size or date in meta if available
-            // For now, just "ENCRYPTED" is fine, or maybe "SECURE"
             tvMeta.text = "SECURE • " + getExtensionLabel(file.name)
             
             itemView.setOnClickListener {
                 onItemClick(file)
+            }
+            
+            ivDelete.setOnClickListener {
+                onDeleteClick(file)
             }
         }
         
