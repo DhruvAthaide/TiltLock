@@ -33,17 +33,39 @@ class SecureFileAdapter(
 
     inner class FileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvName: TextView = itemView.findViewById(R.id.fileName)
+        private val ivIcon: android.widget.ImageView = itemView.findViewById(R.id.ivIcon) // Need to ensure ID matches XML
+        private val tvMeta: TextView = itemView.findViewById(R.id.tvMeta)
 
         fun bind(file: SecureFile) {
-            // Decrypt name if we encrypted filename too? No, filename is random/hashed usually. 
-            // Repository returns UUID name. For better UX, we could store metadata.
-            // For now, prompt implies "import ... and secure".
-            // Let's just show "Secure File ${index}" or the stored name.
-            tvName.text = "SECURE_DATA_" + file.name.take(8)
+            tvName.text = file.name
+            
+            // Set Icon
+            val iconRes = getIconForFile(file.name)
+            ivIcon.setImageResource(iconRes)
+            
+            // Optional: Show size or date in meta if available
+            // For now, just "ENCRYPTED" is fine, or maybe "SECURE"
+            tvMeta.text = "SECURE • " + getExtensionLabel(file.name)
             
             itemView.setOnClickListener {
                 onItemClick(file)
             }
+        }
+        
+        private fun getIconForFile(name: String): Int {
+            val lower = name.lowercase()
+            return when {
+                lower.endsWith(".pdf") -> R.drawable.ic_file_pdf
+                lower.endsWith(".jpg") || lower.endsWith(".jpeg") || lower.endsWith(".png") || lower.endsWith(".webp") -> R.drawable.ic_file_image
+                lower.endsWith(".mp3") || lower.endsWith(".wav") || lower.endsWith(".aac") -> R.drawable.ic_file_audio
+                lower.endsWith(".mp4") || lower.endsWith(".mkv") || lower.endsWith(".avi") -> R.drawable.ic_file_video
+                lower.endsWith(".doc") || lower.endsWith(".docx") || lower.endsWith(".txt") -> R.drawable.ic_file_doc
+                else -> R.drawable.ic_file_doc // Default
+            }
+        }
+
+        private fun getExtensionLabel(name: String): String {
+            return if (name.contains(".")) name.substringAfterLast(".").uppercase() else "FILE"
         }
     }
 }
