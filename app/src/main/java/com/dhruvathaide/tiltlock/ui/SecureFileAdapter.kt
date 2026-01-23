@@ -14,15 +14,27 @@ class SecureFileAdapter(
 ) : RecyclerView.Adapter<SecureFileAdapter.FileViewHolder>() {
 
     private var files: List<SecureFile> = emptyList()
+    private var isGridView: Boolean = true
 
     fun submitList(newFiles: List<SecureFile>) {
         files = newFiles
         notifyDataSetChanged()
     }
 
+    fun setGridView(isGrid: Boolean) {
+        if (isGridView != isGrid) {
+            isGridView = isGrid
+            notifyDataSetChanged()
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FileViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_secure_file, parent, false)
+        val layoutId = if (isGridView) {
+            R.layout.item_secure_file_grid
+        } else {
+            R.layout.item_secure_file
+        }
+        val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return FileViewHolder(view)
     }
 
