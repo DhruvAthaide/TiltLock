@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_cyber"
+    android:background="@drawable/bg_gradient_dark"
     tools:context=".ui.LockActivity">
 
-    <!-- Header Status -->
+    <!-- Status Header -->
     <TextView
         android:id="@+id/statusHeader"
         android:layout_width="wrap_content"
@@ -15,26 +15,26 @@
         android:layout_marginTop="48dp"
         android:text="@string/status_locked"
         android:textColor="@color/error_red"
-        android:fontFamily="monospace"
-        android:letterSpacing="0.2"
-        android:textSize="14sp"
-        android:background="#10FF0033"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="4dp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.1"
+        android:textSize="13sp"
+        android:background="#15FF0033"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Main Vault Card with Parallax -->
+    <!-- Main Vault Card -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/vaultCard"
         android:layout_width="320dp"
         android:layout_height="420dp"
-        android:backgroundTint="#0B0B0B"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="20dp"
-        app:strokeColor="#30FFFFFF"
-        app:strokeWidth="1dp"
+        app:cardBackgroundColor="#1A1A2E"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="24dp"
+        app:strokeColor="#4000F2FF"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,50 +42,49 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="24dp">
 
-            <!-- Decorative corners -->
-            <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@color/neon_cyan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-             <View
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:background="#0B0B0B"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="1dp"/>
-
-            <!-- Iris Visual -->
-            <ImageView
-                android:id="@+id/iris"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:background="@drawable/circle_shape"
-                android:backgroundTint="#151515"
-                android:padding="30dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_lock_outline"
+            <!-- Iris Visual with Glow -->
+            <FrameLayout
+                android:id="@+id/irisContainer"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="#40FFFFFF" />
+                app:layout_constraintTop_toTopOf="parent">
+                
+                <!-- Outer glow -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="#3000F2FF" />
+                
+                <ImageView
+                    android:id="@+id/iris"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="#242438"
+                    android:padding="30dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_lock_outline"
+                    app:tint="@color/neon_cyan" />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:fontFamily="monospace"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/title_secure_vault"
-                android:textColor="@color/neon_cyan"
-                android:letterSpacing="0.3"
-                android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/iris"
+                android:textColor="@color/text_primary"
+                android:letterSpacing="0.15"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/irisContainer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -95,7 +94,7 @@
                 android:layout_marginBottom="16dp"
                 android:fontFamily="monospace"
                 android:text="[ ENCRYPTED ]"
-                android:textColor="#30FFFFFF"
+                android:textColor="@color/text_tertiary"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,11 +108,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:fontFamily="monospace"
+        android:fontFamily="sans-serif"
         android:text="@string/msg_authenticate"
-        android:textColor="@color/neon_cyan"
-        android:alpha="0.7"
-        android:letterSpacing="0.1"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:letterSpacing="0.05"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
