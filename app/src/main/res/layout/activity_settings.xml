@@ -4,21 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_cyber"
+    android:background="@drawable/bg_gradient_dark"
     tools:context=".ui.SettingsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#00000000"
+        android:background="@color/surface_dark"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back" 
         app:title="@string/title_settings"
-        app:titleTextColor="@color/neon_cyan"
-        app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium" />
-    
-    <!-- Note: ic_arrow_back might not exist, will handle in code or check later. Assuming standard attr or resource exists or will use default behavior if setDisplayHomeAsUpEnabled -->
+        app:titleTextColor="@color/text_primary"
+        app:titleTextAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <View
         android:id="@+id/divider"
@@ -27,209 +25,209 @@
         android:background="#20FFFFFF"
         app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
-    <TextView
-        android:id="@+id/lblSensitivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="monospace"
-        android:text="@string/lbl_sensitivity"
-        android:textColor="@color/neon_cyan"
-        android:letterSpacing="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider" />
-    
-    <TextView
-         android:id="@+id/valSensitivity"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginStart="12dp"
-         android:fontFamily="monospace"
-         tools:text="1.0x"
-         android:textColor="#FFFFFF"
-         app:layout_constraintBottom_toBottomOf="@id/lblSensitivity"
-         app:layout_constraintStart_toEndOf="@id/lblSensitivity"/>
-
-    <SeekBar
-        android:id="@+id/seekSensitivity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="24dp"
-        android:max="150"
-        android:progress="50"
-        android:progressTint="@color/neon_cyan"
-        android:thumbTint="@color/neon_cyan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblSensitivity" />
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="24dp"
-        android:text="0.5x"
-        android:textColor="#50FFFFFF"
-        android:textSize="10sp"
-        android:fontFamily="monospace"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seekSensitivity"/>
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="24dp"
-        android:text="2.0x"
-        android:textColor="#50FFFFFF"
-        android:textSize="10sp"
-        android:fontFamily="monospace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seekSensitivity"/>
-
-    <View
-        android:id="@+id/div2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="32dp"
-        android:background="#10FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/seekSensitivity"/>
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <TextView
-        android:id="@+id/lblPattern"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="monospace"
-        android:text="@string/lbl_show_pattern"
-        android:textColor="@color/neon_cyan"
-        android:letterSpacing="0.1"
-        app:layout_constraintEnd_toStartOf="@id/switchPattern"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/div2" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchPattern"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        app:thumbTint="@color/neon_cyan"
-        app:trackTint="#3000FFFF"
-        app:layout_constraintBottom_toBottomOf="@id/lblPattern"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/lblPattern" />
+            <!-- Sensitivity Section -->
+            <TextView
+                android:id="@+id/lblSensitivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/lbl_sensitivity"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+            
+            <TextView
+                android:id="@+id/valSensitivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                tools:text="1.0x"
+                android:textColor="@color/neon_cyan"
+                android:textSize="14sp"/>
 
-    <View
-        android:id="@+id/div3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="24dp"
-        android:background="#10FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/lblPattern"/>
+            <SeekBar
+                android:id="@+id/seekSensitivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:max="150"
+                android:progress="50"
+                android:progressTint="@color/neon_cyan"
+                android:thumbTint="@color/neon_cyan"/>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
 
-    <!-- Sound Switch -->
-    <TextView
-        android:id="@+id/lblSound"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="monospace"
-        android:text="@string/lbl_sound_enabled"
-        android:textColor="@color/neon_cyan"
-        android:letterSpacing="0.1"
-        app:layout_constraintEnd_toStartOf="@id/switchSound"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/div3" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0.5x"
+                    android:textColor="@color/text_tertiary"
+                    android:textSize="11sp"/>
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchSound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        app:thumbTint="@color/neon_cyan"
-        app:trackTint="#3000FFFF"
-        app:layout_constraintBottom_toBottomOf="@id/lblSound"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/lblSound" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.0x"
+                    android:textColor="@color/text_tertiary"
+                    android:textSize="11sp"/>
+            </LinearLayout>
 
-    <!-- Haptics Switch -->
-    <TextView
-        android:id="@+id/lblHaptic"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="monospace"
-        android:text="@string/lbl_haptics_enabled"
-        android:textColor="@color/neon_cyan"
-        android:letterSpacing="0.1"
-        app:layout_constraintEnd_toStartOf="@id/switchHaptic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblSound" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="#20FFFFFF"/>
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchHaptic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        app:thumbTint="@color/neon_cyan"
-        app:trackTint="#3000FFFF"
-        app:layout_constraintBottom_toBottomOf="@id/lblHaptic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/lblHaptic" />
+            <!-- Feedback Settings -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Feedback"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                android:fontFamily="sans-serif-medium"/>
 
-    <!-- Glitch Switch -->
-    <TextView
-        android:id="@+id/lblGlitch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="monospace"
-        android:text="@string/lbl_glitch_enabled"
-        android:textColor="@color/neon_cyan"
-        android:letterSpacing="0.1"
-        app:layout_constraintEnd_toStartOf="@id/switchGlitch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblHaptic" />
+            <!-- Show Pattern -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchGlitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        app:thumbTint="@color/neon_cyan"
-        app:trackTint="#3000FFFF"
-        app:layout_constraintBottom_toBottomOf="@id/lblGlitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/lblGlitch" />
-    
-    <View
-        android:id="@+id/div4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="24dp"
-        android:background="#10FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/lblGlitch"/>
+                <TextView
+                    android:id="@+id/lblPattern"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/lbl_show_pattern"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"/>
 
-    <Button
-        android:id="@+id/btnLogs"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/btn_view_logs"
-        android:fontFamily="monospace"
-        android:backgroundTint="#0B0B0B"
-        app:strokeColor="@color/neon_cyan"
-        app:strokeWidth="1dp"
-        android:textColor="@color/neon_cyan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/div4" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchPattern"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:thumbTint="@color/neon_cyan"
+                    app:trackTint="#30FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Sound -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/lblSound"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/lbl_sound_enabled"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"/>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchSound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:thumbTint="@color/neon_cyan"
+                    app:trackTint="#30FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Haptics -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/lblHaptic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/lbl_haptics_enabled"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"/>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchHaptic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:thumbTint="@color/neon_cyan"
+                    app:trackTint="#30FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Glitch -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/lblGlitch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/lbl_glitch_enabled"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"/>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchGlitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:thumbTint="@color/neon_cyan"
+                    app:trackTint="#30FFFFFF"/>
+            </LinearLayout>
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="#20FFFFFF"/>
+
+            <!-- View Logs Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogs"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/btn_view_logs"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/neon_cyan"
+                app:cornerRadius="8dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
