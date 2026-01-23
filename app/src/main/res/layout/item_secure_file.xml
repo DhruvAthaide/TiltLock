@@ -1,80 +1,75 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
-    android:backgroundTint="#151515"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp">
+    app:cardBackgroundColor="#1A1A2E"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:strokeColor="#3000F2FF"
+    app:strokeWidth="1dp">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#202020">
+        android:padding="12dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- File Icon -->
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_file_doc"
+            app:tint="@color/neon_cyan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- File Name -->
+        <TextView
+            android:id="@+id/fileName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
-            
-            <ImageView
-                android:id="@+id/ivIcon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_file_doc"
-                android:tint="@color/neon_cyan"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="12dp"/>
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/text_primary"
+            android:text="FILE_DATA"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/ivIcon"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
+            app:layout_constraintTop_toTopOf="@id/ivIcon"/>
 
-            <TextView
-                android:id="@+id/fileName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:text="FILE_DATA"
-                android:maxLines="2"
-                android:ellipsize="middle"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="13sp"
-                android:gravity="center"/>
-                
-            <TextView
-                android:id="@+id/tvMeta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ENCRYPTED"
-                android:textColor="#80FFFFFF"
-                android:textSize="10sp"
-                android:fontFamily="monospace"
-                android:gravity="center"
-                android:layout_marginTop="4dp"/>
+        <!-- File Meta Info -->
+        <TextView
+            android:id="@+id/tvMeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="ENCRYPTED"
+            android:textColor="@color/text_tertiary"
+            android:textSize="11sp"
+            android:fontFamily="sans-serif"
+            app:layout_constraintStart_toEndOf="@id/ivIcon"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
+            app:layout_constraintTop_toBottomOf="@id/fileName"/>
 
-        </LinearLayout>
-        
+        <!-- Delete Button -->
         <ImageView
             android:id="@+id/ivDelete"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_delete"
-            android:padding="6dp"
+            android:padding="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_gravity="top|end"
-            android:layout_margin="4dp"
-            app:tint="#60FFFFFF" />
+            app:tint="@color/text_tertiary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#1000F2FF"
-            android:layout_gravity="bottom"/>
-            
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#1000F2FF"
-        android:layout_gravity="bottom"/>
-
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
