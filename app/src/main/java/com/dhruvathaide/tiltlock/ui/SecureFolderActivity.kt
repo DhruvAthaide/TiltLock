@@ -87,6 +87,13 @@ class SecureFolderActivity : AppCompatActivity() {
         )
         updateLayoutManager()
         recyclerView.adapter = adapter
+        
+        // Add item animations
+        val animation = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.item_animation)
+        val controller = android.view.animation.LayoutAnimationController(animation)
+        controller.delay = 0.1f
+        controller.order = android.view.animation.LayoutAnimationController.ORDER_NORMAL
+        recyclerView.layoutAnimation = controller
     }
     
     private fun confirmDelete(file: SecureFile) {
@@ -107,9 +114,7 @@ class SecureFolderActivity : AppCompatActivity() {
         } else {
             recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         }
-        // Force re-bind to update layout params if needed? 
-        // Usually Adapter handles it, but CardView margin might layout differently.
-        adapter.notifyDataSetChanged()
+        adapter.setGridView(isGridView)
     }
     
     private fun toggleViewMode() {
