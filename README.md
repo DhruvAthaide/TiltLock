@@ -45,7 +45,7 @@
 
 | Lock Screen | Secure Vault | Break-In Log |
 |:-----------:|:------------:|:------------:|
-| ![Lock](Images\TiltLock-Screen1.jpeg) | ![Vault](Images\TiltLock-Screen3.jpeg) | ![Log](Images\TiltLock-Screen4.jpeg) |
+| ![Lock](Images/TiltLock-Screen1.jpeg) | ![Vault](Images/TiltLock-Screen3.jpeg) | ![Log](Images/TiltLock-Screen4.jpeg) |
 
 ---
 
