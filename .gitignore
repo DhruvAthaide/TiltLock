@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+tiltlock-keystore.txt
+tiltlock-keystore.jks
